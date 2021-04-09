@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    </h:head>
+    <h:body>
+
+        <div class="container">
+            <!-- Page Content goes here -->
+            <div class="row">
+                <div class="col s6">
+                    <label for=""><h2>Calculadora Básica</h2></label>
+                    <h:form>
+                        <h:inputText id="vr_1" maxlength="6" value="#{calculoSession.objOm.valorA}" style="padding-top: 117px;" class="validate" html5:placeholder=" "/>
+                        <label for="vr_1">Ingrese valor 1</label>
+
+                        <h:inputText id="vr_2" maxlength="6" value="#{calculoSession.objOm.valorB}" class="validate" html5:placeholder=" "/>
+                        <label for="vr_2">Ingrese valor 2</label>
+
+                        <div style="padding-top: 117px;" class="row">
+                            <h:commandButton style="font-size: 39px; margin: 15px;" action="#{calculoSession.opSuma()}" value="+" class="waves-effect red accent-3 btn-large"></h:commandButton>
+                            <h:commandButton style="font-size: 39px; margin: 15px;" action="#{calculoSession.opResta()}" value="-" class="waves-effect teal lighten-3 btn-large"></h:commandButton>
+                            <h:commandButton style="font-size: 39px; margin: 15px;" action="#{calculoSession.opMultiplicacion()}" value="*" class="waves-effect lime btn-large"></h:commandButton>
+                            <h:commandButton style="font-size: 39px; margin: 15px;" action="#{calculoSession.opDivision()}" value="/" class="waves-effect orange darken-4 btn-large"></h:commandButton>
+                        </div>
+                    </h:form>
+                </div>
+                <div class="col s6" style="margin-top: 117px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Valor A</th>
+                                <th>Valor B</th>
+                                <th>Operacion</th>
+                                <th>Resultado</th>
+                            </tr>
+                        </thead>
+                        <c:forEach items="#{calculoSession.listaResultados}" var="obl">
+                            <tr>
+                                <td>#{obl.valorA}</td>
+                                <td>#{obl.valorB}</td>
+                                <td>#{obl.action}</td>
+                                <td>#{obl.resultado}</td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
